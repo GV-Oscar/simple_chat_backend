@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocketServer</title>
 </head>
+
 <body>
     <h1>Acceso denegado</h1>
 
@@ -13,21 +15,34 @@
     <script>
         var client = io();
 
-        client.on('connect', function() {
-            console.log('Conectado al servidor')
+        // Escuchar cuando se conecta con el servidor.
+        client.on('connect', function () {
+            console.log('Conectado con el servidor');
         })
 
-        client.on('disconnect', function() {
-            console.log('Perdimos comunicación con el servidor')
-        })
+        // Escuchar cuando se desconecta del servidor
+        client.on('disconnect', function () {
+            console.log('Desconectado con el servidor');
+        })     
 
+        // Escuchar cuando se recibe evento de listado de bandas activas.
+        client.on('active-bands', function (payload) {
+            console.clear();
+            console.table(payload);
+        });
+
+
+        /*
         // Emitir un evento al servidor
-        client.emit('mensaje', { nombre: 'Oscar', apelido: 'Giraldo', dni: '123456', time: Date.now() });
+        // client.emit('mensaje', { nombre: 'Oscar', apelido: 'Giraldo', dni: '123456', time: Date.now() });
 
         // Escuchar un evento del servidor
-        client.on('mensaje', function(payload) {
+        client.on('mensaje', function (payload) {
             console.log(payload);
         });
+        */
+
     </script>
 </body>
+
 </html>
