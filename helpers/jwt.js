@@ -8,7 +8,7 @@ const generarJWT = (uid, name,) => {
 
         const payload = {
             uid,
-            name
+            //name
         }
 
         jwt.sign(payload, process.env.JWT_PKEY, {

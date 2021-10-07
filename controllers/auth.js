@@ -96,11 +96,21 @@ const signIn = async (request = request, response = response) => {
 }
 
 // Controlador para Renovar Token de Usuario
-const renewToken = async(request = request, response = response) =>{
+const renewToken = async (request = request, response = response) => {
+
+    // Obtener uid de usuario de la peticion.
+    const uid = request.uid;
+
+    // Generar un nuevo token
+    const newToken = await generarJWT(uid);
+
+    // Obtener usuario por el uid
+    const usuarioDB = await Usuario.findById(uid);
 
     response.json({
-        ok:true,
-        msg: request.uid
+        ok: true,
+        usuario: usuarioDB,
+        token: newToken
     });
 }
 
