@@ -29,4 +29,19 @@ const generarJWT = (uid, name,) => {
 
 }
 
-module.exports = { generarJWT }
+const comprobarJWT = (token = '') => {
+
+    try {
+
+        // Validar token
+        const { uid } = jwt.verify(token, process.env.JWT_PKEY);
+        return [true, uid];
+
+    } catch (error) {
+        return [false, null];
+    }
+
+
+}
+
+module.exports = { generarJWT, comprobarJWT }

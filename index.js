@@ -27,13 +27,10 @@ const publicPath = path.resolve(__dirname, 'public');
 app.use(express.static(publicPath));
 
 
-
-
 // Mis Rutas
 app.use('/api/auth', require('./routes/auth'));
-
-
-
+app.use('/api/users', require('./routes/usuarios'));
+app.use('/api/messages', require('./routes/mensajes'));
 
 
 

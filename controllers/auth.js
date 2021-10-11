@@ -14,12 +14,21 @@ const signup = async (request = request, response = response) => {
         const existeEmail = await Usuario.findOne({ email: email });
         const existePhone = await Usuario.findOne({ phone: phone });
 
-        if (existeEmail || existePhone) {
+        if (existePhone) {
             return response.status(400).json({
                 ok: false,
-                msg: 'Credenciales no validas'
+                msg: 'El número celular ya se encuentra registrado'
             })
         }
+
+        if (existeEmail) {
+            return response.status(400).json({
+                ok: false,
+                msg: 'El correo ya se encuentra registrado'
+            })
+        }
+
+
 
         const usuarioNew = new Usuario(request.body);
         // encriptar contraseña
